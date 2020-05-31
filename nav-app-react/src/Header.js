@@ -7,7 +7,6 @@ class Header extends React.Component {
         <input type="checkbox" id="nav-check" />
         <div class="nav-header">
           <i class="fa fa-cubes fa-2x nav-title"></i>
-          <div class="nav-title">CoAcco</div>
         </div>
         <div class="nav-btn">
           <label for="nav-check">
