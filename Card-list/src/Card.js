@@ -1,7 +1,4 @@
 import React from "react";
-import M from "materialize-css";
-import $ from "jquery";
-import Tabs from "./Tabs";
 import image1 from "./assets/images/image1.jpg";
 import image2 from "./assets/images/image2.jpg";
 import image3 from "./assets/images/image3.jpg";
@@ -12,67 +9,40 @@ import image7 from "./assets/images/image7.jpg";
 //Some dummy data
 const data = [
   {
-    title: "The Villa",
+    title: "The Villa, Murano Hill, Manhattan, NY",
     address: "The Villa, Murano Hill, Manhattan, NY",
-    price: "₹11000",
-    newprice: "₹5000",
+    price: "$110000",
     image: image1,
     rating: 4,
     reviews: 1000,
-    tab1: "#test1",
-    tab2: "#test2",
   },
   {
-    title: "Santa Ynez",
+    title: "Santa Ynez, Santa Barbara County, CA",
     address: "Santa Ynez, Santa Barbara County, CA",
-    price: "₹12000",
-    newprice: "₹6000",
+    price: "$280000",
     image: image2,
     rating: 4,
     reviews: 2000,
-    tab1: "#test3",
-    tab2: "#test4",
   },
   {
-    title: "La Grange",
+    title: "La Grange cro, Stanislaus County, USA",
     address: "La Grange cro, Stanislaus County, USA",
-    price: "₹15000",
-    newprice: "₹10000",
+    price: "$325000",
     image: image3,
     rating: 5,
     reviews: 3000,
-    tab1: "#test5",
-    tab2: "#test6",
   },
   {
-    title: "Suite",
+    title: "Suite Cardinal La Suite, Green Bay, WI",
     address: "Suite Cardinal La Suite, Green Bay, WI",
-    price: "₹24000",
-    newprice: "₹12000",
+    price: "$470000",
     image: image4,
     rating: 4,
     reviews: 4000,
-    tab1: "#test7",
-    tab2: "#test8",
   },
 ];
 
 class Card extends React.Component {
-  componentDidMount() {
-    var el = document.querySelectorAll(".tabs");
-    var instance = M.Tabs.init(el, {});
-    document.addEventListener("DOMContentLoaded", function () {
-      var elems = document.querySelectorAll(".fixed-action-btn");
-      var instances = M.FloatingActionButton.init(elems, {
-        toolbarEnabled: true,
-      });
-    });
-    /*$(function () {
-      $("i").click(function () {
-        $("i,span").toggleClass("press", 1000);
-      });
-    });*/
-  }
   render() {
     return (
       <div class="main">
@@ -120,101 +90,61 @@ class Card extends React.Component {
           ))}
         </div>
         <div class="hide-on-small-only">
-          {data.map(
-            ({
-              title,
-              address,
-              price,
-              newprice,
-              image,
-              rating,
-              reviews,
-              tab1,
-              tab2,
-            }) => (
-              <div class="wrapper">
-                <div class="col s12 m6">
-                  <div class="card horizontal small">
-                    <div class="card-image">
-                      <img src={image} />
-                      <div class="pos-heart-favorite">
-                        <div class="heart-favorite">
-                          <i class="heart-favorite-icon"></i>
-                          <span class="heart-favorite-span">liked!</span>
+          {data.map(({ title, price, image, rating, reviews }) => (
+            <div class="wrapper">
+              <div class="col s12 m6">
+                <div class="card horizontal small">
+                  <div class="card-image">
+                    <img src={image} />
+                  </div>
+                  <div class="card-stacked">
+                    <div class="card-content">
+                      <div class="card-left">
+                        <div class="card-address">
+                          <b>
+                            <h6 class="align-left">{title}</h6>
+                          </b>
+                        </div>
+                        <div class="review-component valign-wrapper">
+                          <a class="valign-wrapper waves-effect waves-light btn-small card-rating">
+                            <a class="rating-text">{rating}</a>
+                            <i class="material-icons small left">star</i>
+                          </a>
+                          <a class="total-reviews margin-lg">
+                            <p>({reviews} Ratings)</p>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="card-right">
+                        <div class="card-price">
+                          <b>
+                            <h6 class="align-right">{price}</h6>
+                          </b>
                         </div>
                       </div>
                     </div>
-
-                    <div class="card-stacked">
-                      <div class="card-content">
-                        <div class="card-left">
-                          <div class="card-title">
-                            <h5 class="align-left">{title}</h5>
-                          </div>
-                          <div class="card-address">
-                            <p class="align-left truncate">{address}</p>
-                          </div>
-                          <br />
-                          <div class="review-component valign-wrapper">
-                            <a class="valign-wrapper waves-effect waves-light btn-small card-rating">
-                              <p class="rating-text">{rating}</p>
-                              <i class="material-icons small left">star</i>
-                            </a>
-                            <a class="total-reviews margin-lg">
-                              <a>({reviews} Ratings)</a>
-                            </a>
-                          </div>
-                          <div class="tabs-wrapper">
-                            <Tabs area1={tab1} area2={tab2} />
-                          </div>
-                        </div>
-                        <div class="card-right">
-                          <div class="card-price">
-                            <div class="style-1">
-                              <del>
-                                <span class="align-right amount">{price}</span>
-                              </del>
-                              <ins>
-                                <span class="align-right amount">
-                                  {newprice}
-                                </span>
-                              </ins>
-                            </div>
-                          </div>
-                        </div>
+                    <div class="card-action ">
+                      <div class="amenities">
+                        <i class="material-icons margin ">airport_shuttle</i>
+                        <i class="material-icons margin ">network_wifi</i>
+                        <i class="material-icons margin ">store</i>
+                        <i class="material-icons margin ">weekend</i>
                       </div>
-
-                      <div class="card-action ">
-                        <div class="collection">
-                          <a href="#!" class="collection-item">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i>{" "}
-                            <a>IT Park 0.5KM</a>
-                          </a>
-                          <a href="#!" class="collection-item">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i>{" "}
-                            <a>Hospital 5KM</a>
-                          </a>
-                          <a href="#!" class="collection-item">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i>{" "}
-                            <a>Bus Stop 1KM</a>
-                          </a>
-                        </div>
-                        <div class="details valign-wrapper">
-                          <button
-                            class="valign-wrapper  btn waves-effect waves-light indigo"
-                            type="submit"
-                            name="action"
-                          >
-                            <p class="btn-txt">Details</p>
-                          </button>
-                        </div>
+                      <div class="favourites valign-wrapper">
+                        <button
+                          class="btn waves-effect waves-light indigo"
+                          type="submit"
+                          name="action"
+                        >
+                          View Details
+                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            )
-          )}
+            </div>
+          ))}
         </div>
         <div class="pagination-wrapper">
           <ul class="pagination">

@@ -18,6 +18,11 @@ class Filters extends React.Component {
           </p>
           <FilterByCategory />
           <br />
+          <p>
+            <b>BY JOINING</b>
+          </p>
+          <FilterByTime />
+          <br />
 
           <p>
             <b>BY GENDER</b>
@@ -35,14 +40,6 @@ class Filters extends React.Component {
             <b>BY STARS</b>
           </p>
           <FilterByRating />
-          <br />
-          <br />
-
-          <br />
-          <p>
-            <b>BY JOINING</b>
-          </p>
-          <FilterByTime />
           <br />
 
           <p>
