@@ -13,13 +13,32 @@ class FilterByType extends React.Component {
     return (
       <div>
         <div class="input-field col s12">
-          <select>
-            <option value="" selected>
-              Gender
-            </option>
-            <option value="1">For Men</option>
-            <option value="2">For Women</option>
-          </select>
+          <form action="#">
+            <p>
+              <label>
+                <input name="group1" type="radio" class="with-gap" />
+                <span>For men</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="group1" type="radio" class="with-gap" />
+                <span>For women</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="group1" type="radio" class="with-gap" />
+                <span>Co-ed</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="group1" type="radio" class="with-gap" />
+                <span>Co live</span>
+              </label>
+            </p>
+          </form>
         </div>
       </div>
     );
