@@ -1,0 +1,111 @@
+.search-options-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-options-col {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.search-options-btn {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.search-options-btn .btn {
+  background-color: #2196f3;
+  width: 120px;
+  height: 50px;
+  margin: 10px;
+  text-align: center;
+}
+
+li .selected {
+  background-color: #2196f3 !important;
+}
+/*Range slider*/
+
+#slider {
+  width: 98%;
+}
+
+.noUi-tooltip {
+  display: none !important;
+}
+.noUi-active .noUi-tooltip {
+  display: block !important;
+}
+
+.noUi-connect,
+.noUi-connects,
+.noUi-base,
+.noUi-target {
+  height: 3px !important;
+  outline: none;
+}
+.noUi-target .noUi-base,
+.noU-origin {
+  background: linear-gradient(117deg, #0d064c 0, #740887 100%);
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.noUi-target .noUi-base .noUi-connect {
+  background: #013a67;
+}
+.noUi-target .noUi-base .noUi-tooltip {
+  bottom: -35px;
+  color: #013a67;
+  border: none;
+  outline: none;
+  font-weight: bold;
+}
+.noUi-handle.noUi-handle-lower,
+.noUi-handle.noUi-handle-upper {
+  background: #0d064c;
+  border-radius: 20px;
+  width: 15px;
+  height: 15px;
+  outline: none;
+  right: -10px;
+  top: -7px;
+  cursor: pointer;
+  box-shadow: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.noUi-handle.noUi-handle-lower.noUi-active,
+.noUi-handle.noUi-handle-upper.noUi-active {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+.noUi-handle.noUi-handle-lower::before,
+.noUi-handle.noUi-handle-lower::after,
+.noUi-handle.noUi-handle-upper::before,
+.noUi-handle.noUi-handle-upper::after {
+  display: none;
+}
+.noUi-handle.noUi-handle-lower .noUi-touch-area,
+.noUi-handle.noUi-handle-upper .noUi-touch-area {
+  width: 30px;
+  height: 30px;
+}
+
+.noUi-tooltip {
+  display: block;
+}
+.noUi-active .noUi-tooltip {
+  display: block;
+}

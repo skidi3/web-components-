@@ -1,0 +1,80 @@
+.sec-3 {
+  width: 100%;
+  height: 100vh;
+}
+.sec-3-container {
+  margin: 150px 100px;
+}
+.pantone-card {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 500px;
+  margin: 20px 20px;
+}
+
+.pantone-card--french-gray {
+  background-color: #cecdcf;
+}
+
+.pantone-card--vanilla-ice {
+  background-color: #f5dadf;
+}
+
+.pantone-card--mischka {
+  background-color: #e2e0e3;
+}
+
+.pantone-card--givry {
+  background-color: #f9dbc6;
+}
+
+.pantone-card--bon-jour {
+  background-color: #edebed;
+}
+
+.pantone-card--jagged-ice {
+  background-color: #c3e5e9;
+}
+
+.pantone-card--shadow-green {
+  background-color: #99c4c8;
+}
+
+.pantone-card--conch {
+  background-color: #c0d5cf;
+}
+
+.pantone-card--gray-nurse {
+  background-color: #e2e8de;
+}
+
+.pantone-card--pampas {
+  background-color: #f2ece8;
+}
+
+.pantone-card__footer {
+  background-color: #fff;
+  padding: 30px;
+  text-align: center;
+}
+
+.pantone-card__name {
+  color: #000;
+  font-size: 18px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.pantone-card__name span {
+  display: block;
+}
+
+.grid {
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: repeat(5, auto);
+  grid-gap: 5px;
+}
