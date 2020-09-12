@@ -2,8 +2,8 @@ import React from "react";
 import FilterByRating from "./FilterByRating";
 import FilterByCategory from "./FilterByCategory";
 import FilterByPrice from "./FilterByPrice";
-import FilterByType from "./FilterByType";
-import FilterByTags from "./FilterByTags";
+import FilterByGender from "./FilterByGender";
+import FilterByAmenities from "./FilterByAmenities";
 import FilterByOccupancy from "./FilterByOccupancy";
 
 import "nouislider/distribute/nouislider.css";
@@ -22,7 +22,7 @@ class Filters extends React.Component {
           <p>
             <b>BY GENDER</b>
           </p>
-          <FilterByType />
+          <FilterByGender />
           <br />
 
           <p>
@@ -46,7 +46,7 @@ class Filters extends React.Component {
           <p>
             <b>BY AMENETIES</b>
           </p>
-          <FilterByTags />
+          <FilterByAmenities />
         </div>
         <div class="filter-button">
           <button

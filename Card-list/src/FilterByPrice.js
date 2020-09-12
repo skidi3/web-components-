@@ -1,55 +1,51 @@
 import React from "react";
 import noUiSlider from "nouislider";
+import "nouislider/distribute/nouislider.css";
 import * as wNumb from "wnumb";
+import $ from "jquery";
 
 class FilterByPrice extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      min: "",
+      max: "",
+    };
+  }
   componentDidMount() {
-    var connectSlider = document.getElementById("slider-connect");
-    noUiSlider.create(connectSlider, {
-      start: 10,
-      connect: [true, false],
+    var slider = document.getElementById("slider");
+    noUiSlider.create(slider, {
+      start: [1001, 9999],
+      connect: true,
+      tooltips: true,
+      step: 1,
       range: {
         min: 1000,
         max: 10000,
       },
-      tooltips: wNumb({ decimals: 0, suffix: "$" }),
-      format: wNumb({ decimals: 0 }),
+      format: wNumb({
+        decimals: 0,
+      }),
     });
-
-    function manualStep(direction) {
-      var currentPosition = parseInt(connectSlider.noUiSlider.get());
-      var stepSize = 1;
-      if (direction == "f") {
-        currentPosition += stepSize;
-      }
-      if (direction == "b") {
-        currentPosition -= stepSize;
-      }
-      currentPosition = Math.round(currentPosition / stepSize) * stepSize;
-      connectSlider.noUiSlider.set(currentPosition);
-    }
-    document.getElementById("stepforward").onclick = function () {
-      manualStep("f");
-    };
-    document.getElementById("stepback").onclick = function () {
-      manualStep("b");
-    };
   }
+  getCurrMaxData = () => {
+    var currMaxPos = $(".noUi-handle-upper .noUi-tooltip").html();
+    //console.log(currMaxPos);
+    this.setState({ max: currMaxPos });
+  };
+  getCurrMinData = () => {
+    var currMinPos = $(".noUi-handle-lower .noUi-tooltip").html();
+    //console.log(currMinPos);
+    this.setState({ min: currMinPos });
+    this.getCurrMaxData();
+  };
   render() {
     return (
-      <div class="input-field col s12 by-price ">
-        <div class="left margin-btn">
-          <div id="slider-connect" class="range"></div>
-          <div class="example-val" hidden="" id="event-end"></div>
-        </div>
+      <div class="price-filter-wrapper" onClick={this.getCurrMinData}>
         <br />
-        <div class="right margin-btn">
-          <button id="stepback">
-            <i class="fa fa-minus fa-lg" aria-hidden="true"></i>
-          </button>
-          <button id="stepforward">
-            <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
-          </button>
+        <div class="input-field col s12 by-price ">
+          {console.log(this.state)}
+          <div id="slider"></div>
         </div>
       </div>
     );
