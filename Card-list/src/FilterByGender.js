@@ -3,27 +3,24 @@ import "materialize-css/dist/css/materialize.min.css";
 import M from "materialize-css";
 
 class FilterByGender extends React.Component {
-  constructor(props) {
+  /*{constructor(props) {
     super(props);
     this.state = {
       gender: "",
     };
     this.handleChange = this.handleChange.bind(this);
-  }
+  }}*/
   componentDidMount() {
     document.addEventListener("DOMContentLoaded", function () {
       var elems = document.querySelectorAll("select");
       var instances = M.FormSelect.init(elems, {});
     });
   }
-  handleChange = (e) => {
-    this.setState({ gender: e.target.value });
-  };
+
   render() {
     return (
       <div>
         <div class="input-field col s12">
-          {console.log(this.state)}
           <form action="#">
             <p>
               <label>
@@ -32,7 +29,7 @@ class FilterByGender extends React.Component {
                   class="with-gap"
                   value="boys"
                   name="by-gender"
-                  onChange={this.handleChange}
+                  onChange={this.props.genderHandler}
                 />
                 <span>Boys only</span>
               </label>
@@ -44,7 +41,7 @@ class FilterByGender extends React.Component {
                   class="with-gap"
                   value="girls"
                   name="by-gender"
-                  onChange={this.handleChange}
+                  onChange={this.props.genderHandler}
                 />
                 <span>Girls only</span>
               </label>
@@ -56,7 +53,7 @@ class FilterByGender extends React.Component {
                   class="with-gap"
                   value="unisex"
                   name="by-gender"
-                  onChange={this.handleChange}
+                  onChange={this.props.genderHandler}
                 />
                 <span>Unisex</span>
               </label>
