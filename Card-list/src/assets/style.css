@@ -15,17 +15,8 @@ a {
   color: black;
   font-size: 12px;
 }
-.nav-wrapper {
-  background-color: #3f51b5;
-}
-.nav-logo {
-  position: absolute;
-  margin-left: 80px;
-}
-.nav-lists {
-  position: absolute;
-  margin-left: 950px;
-}
+
+/*form section*/
 .form-wrapper {
   display: flex;
   flex-direction: row;
@@ -312,6 +303,18 @@ image {
 }
 
 /*Filters*/
+
+/*filter btn*/
+.filter-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.filter-button-submit {
+  width: 120px !important;
+  background-color: #3f51b5;
+}
 /*By Rating*/
 .rating {
   unicode-bidi: bidi-override;

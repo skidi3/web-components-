@@ -17,25 +17,19 @@ class FilterByType extends React.Component {
             <p>
               <label>
                 <input name="group1" type="radio" class="with-gap" />
-                <span>For men</span>
+                <span>Boys only</span>
               </label>
             </p>
             <p>
               <label>
                 <input name="group1" type="radio" class="with-gap" />
-                <span>For women</span>
+                <span>Girls only</span>
               </label>
             </p>
             <p>
               <label>
                 <input name="group1" type="radio" class="with-gap" />
-                <span>Co-ed</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input name="group1" type="radio" class="with-gap" />
-                <span>Co live</span>
+                <span>Unisex</span>
               </label>
             </p>
           </form>

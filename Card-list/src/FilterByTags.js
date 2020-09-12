@@ -11,7 +11,24 @@ class FilterByTags extends Component {
   render() {
     return (
       <div>
-        <div class="amenities">
+        <div class="input-field col s12">
+          <select multiple>
+            <option value="" disabled selected>
+              Choose your option
+            </option>
+            <option value="1">AC</option>
+            <option value="2">Washing Machine</option>
+            <option value="3">Kitchen</option>
+            <option value="4">Fridge</option>
+            <option value="5">WiFi</option>
+            <option value="6">Furniture</option>
+            <option value="7">Laundry</option>
+            <option value="8">CCTV</option>
+            <option value="9">Cabs</option>
+            <option value="10">Store</option>
+          </select>
+        </div>
+        {/*<div class="amenities">
           <a
             class="waves-effect waves-light btn-large margin-lg tooltipped"
             data-position="top"
@@ -75,7 +92,7 @@ class FilterByTags extends Component {
           >
             <i class="material-icons margin">airport_shuttle</i>
           </a>
-        </div>
+    </div>*/}
       </div>
     );
   }

@@ -4,7 +4,7 @@ import FilterByCategory from "./FilterByCategory";
 import FilterByPrice from "./FilterByPrice";
 import FilterByType from "./FilterByType";
 import FilterByTags from "./FilterByTags";
-import FilterByTime from "./FilterByTime";
+import FilterByOccupancy from "./FilterByOccupancy";
 
 import "nouislider/distribute/nouislider.css";
 
@@ -36,19 +36,27 @@ class Filters extends React.Component {
           </p>
           <FilterByRating />
           <br />
-          <br />
 
-          <br />
           <p>
-            <b>BY JOINING</b>
+            <b>BY OCCUPANCY</b>
           </p>
-          <FilterByTime />
+          <FilterByOccupancy />
           <br />
 
           <p>
-            <b>By Features</b>
+            <b>BY AMENETIES</b>
           </p>
           <FilterByTags />
+        </div>
+        <div class="filter-button">
+          <button
+            class="filter-button-submit btn waves-effect waves-light"
+            type="submit"
+            name="action"
+          >
+            Submit
+            <i class="material-icons right">send</i>
+          </button>
         </div>
       </div>
     );

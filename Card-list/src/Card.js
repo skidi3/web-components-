@@ -6,6 +6,7 @@ import image1 from "./assets/images/image1.jpg";
 import image2 from "./assets/images/image2.jpg";
 import image3 from "./assets/images/image3.jpg";
 import image4 from "./assets/images/image4.jpg";
+import axios from "axios";
 
 //Some dummy data
 const data = [
@@ -60,6 +61,9 @@ const data = [
 ];
 
 class Card extends React.Component {
+  state = {
+    data1: [],
+  };
   componentDidMount() {
     var el = document.querySelectorAll(".tabs");
     var instance = M.Tabs.init(el, {});
@@ -69,6 +73,22 @@ class Card extends React.Component {
         toolbarEnabled: true,
       });
     });
+
+    /*axios
+      .get("https://picsum.photos/v2/list")
+      .then((response) => {
+        console.log(response.data);
+
+        this.setState({
+          data1: response.data[0].download_url,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });*/
+    //.then((res) => );
+
+    //this.setState(image: this.data.0.url)
     /*$(function () {
       $("i").click(function () {
         $("i,span").toggleClass("press", 1000);
@@ -78,6 +98,7 @@ class Card extends React.Component {
   render() {
     return (
       <div class="main">
+        {console.log(this.state.data1)}
         <div class="show-on-small hide-on-med-and-up">
           {data.map(({ title, price, image, rating, reviews }) => (
             <div class="wrapper">

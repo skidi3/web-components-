@@ -40,7 +40,7 @@ export default class ListingDetail extends Component {
     const { carddetails } = this.state;
     return (
       <div className="listcontainer">
-        {console.log(this.props)}
+        {console.log(this.props)} 
         {console.log(carddetails)}
         <div id="topsection" className="pgdetail-header">
           <div className="section1">
