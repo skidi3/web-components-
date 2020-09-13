@@ -15,27 +15,6 @@ class Card extends React.Component {
         toolbarEnabled: true,
       });
     });
-
-    /*axios
-      .get("https://picsum.photos/v2/list")
-      .then((response) => {
-        console.log(response.data);
-
-        this.setState({
-          data1: response.data[0].download_url,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });*/
-    //.then((res) => );
-
-    //this.setState(image: this.data.0.url)
-    /*$(function () {
-      $("i").click(function () {
-        $("i,span").toggleClass("press", 1000);
-      });
-    });*/
   }
 
   render() {
