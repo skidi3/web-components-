@@ -2,68 +2,10 @@ import React from "react";
 import M from "materialize-css";
 import { Link } from "react-router-dom";
 import Tabs from "./Tabs";
-import image1 from "./assets/images/image1.jpg";
-import image2 from "./assets/images/image2.jpg";
-import image3 from "./assets/images/image3.jpg";
-import image4 from "./assets/images/image4.jpg";
-import axios from "axios";
 
 //Some dummy data
-const data = [
-  {
-    id: 1,
-    title: "The Villa",
-    address: "The Villa, Murano Hill, Manhattan, NY",
-    price: "₹11000",
-    newprice: "₹5000",
-    image: image1,
-    rating: 4,
-    reviews: 1000,
-    tab1: "#test1",
-    tab2: "#test2",
-  },
-  {
-    id: 2,
-    title: "Santa Ynez",
-    address: "Santa Ynez, Santa Barbara County, CA",
-    price: "₹12000",
-    newprice: "₹6000",
-    image: image2,
-    rating: 4,
-    reviews: 2000,
-    tab1: "#test3",
-    tab2: "#test4",
-  },
-  {
-    id: 3,
-    title: "La Grange",
-    address: "La Grange cro, Stanislaus County, USA",
-    price: "₹15000",
-    newprice: "₹10000",
-    image: image3,
-    rating: 5,
-    reviews: 3000,
-    tab1: "#test5",
-    tab2: "#test6",
-  },
-  {
-    id: 4,
-    title: "Suite",
-    address: "Suite Cardinal La Suite, Green Bay, WI",
-    price: "₹24000",
-    newprice: "₹12000",
-    image: image4,
-    rating: 4,
-    reviews: 4000,
-    tab1: "#test7",
-    tab2: "#test8",
-  },
-];
 
 class Card extends React.Component {
-  state = {
-    data1: [],
-  };
   componentDidMount() {
     var el = document.querySelectorAll(".tabs");
     var instance = M.Tabs.init(el, {});
@@ -95,55 +37,60 @@ class Card extends React.Component {
       });
     });*/
   }
+
   render() {
     return (
-      <div class="main">
-        {console.log(this.state.data1)}
+      <div class="main" onLoad={(this.props.dataHandler, this.props.data)}>
+        {console.log(this.props.data[0])}
         <div class="show-on-small hide-on-med-and-up">
-          {data.map(({ title, price, image, rating, reviews }) => (
-            <div class="wrapper">
-              <div class="row">
-                <div class="col s12 m6 ">
-                  <div class="card">
-                    <div class="card-image">
-                      <img src={image} />
-                    </div>
-
-                    <div class="card-stacked">
-                      <div class="card-content">
-                        <div class="card-address">
-                          <h6 class="align-left">{title}</h6>
-                        </div>
-                        <div class="card-price">
-                          <h6 class="align-left">{price}</h6>
-                        </div>
+          {this.props.data[0].map(
+            ({ title, price, image, rating, reviews }) => (
+              <div class="wrapper">
+                <div class="row">
+                  <div class="col s12 m6 ">
+                    <div class="card">
+                      <div class="card-image">
+                        <img src={image} />
                       </div>
-                      <div class="card-action ">
-                        <div class="amenities">
-                          <i class=" material-icons margin ">airport_shuttle</i>
-                          <i class="material-icons margin ">network_wifi</i>
-                          <i class="material-icons margin ">store</i>
-                          <i class="material-icons margin ">weekend</i>
+
+                      <div class="card-stacked">
+                        <div class="card-content">
+                          <div class="card-address">
+                            <h6 class="align-left">{title}</h6>
+                          </div>
+                          <div class="card-price">
+                            <h6 class="align-left">{price}</h6>
+                          </div>
                         </div>
-                        <div class="favourites valign-wrapper">
-                          <button
-                            class="btn waves-effect waves-light"
-                            type="submit"
-                            name="action"
-                          >
-                            Details
-                          </button>
+                        <div class="card-action ">
+                          <div class="amenities">
+                            <i class=" material-icons margin ">
+                              airport_shuttle
+                            </i>
+                            <i class="material-icons margin ">network_wifi</i>
+                            <i class="material-icons margin ">store</i>
+                            <i class="material-icons margin ">weekend</i>
+                          </div>
+                          <div class="favourites valign-wrapper">
+                            <button
+                              class="btn waves-effect waves-light"
+                              type="submit"
+                              name="action"
+                            >
+                              Details
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          )}
         </div>
         <div class="hide-on-small-only">
-          {data.map(
+          {this.props.data[0].map(
             ({
               id,
               title,
