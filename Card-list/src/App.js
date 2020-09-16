@@ -9,7 +9,7 @@ import image2 from "./assets/images/image2.jpg";
 import image3 from "./assets/images/image3.jpg";
 import image4 from "./assets/images/image4.jpg";
 import axios from "axios";
-const data1 = [
+/*const data1 = [
   {
     id: 1,
     title: "The Villa",
@@ -58,7 +58,7 @@ const data1 = [
     tab1: "#test7",
     tab2: "#test8",
   },
-];
+]; */
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -66,72 +66,61 @@ class App extends React.Component {
       cardData: [],
       allData: [],
       filteredData: [],
+      isLoading: true,
     };
-    this.handleData(); //this.getData();
+  }
+  componentWillMount() {
+    axios
+      .get("http://localhost:8089/api/all")
+      .then((response) => {
+        this.state.allData.push(response.data);
+        this.setState({ isLoading: false });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    //Overwrites card-data if filter-data is present.
+    if (this.state.filteredData.length === 0) {
+      //this.setState({ cardData: [...this.state.allData] });
+      this.state.cardData.push(this.state.allData);
+    } else {
+      //this.setState({ cardData: this.state.filteredData });
+      this.state.cardData.push(this.state.filteredData);
+    }
   }
 
-  getData = (e) => {
-    axios
-      .get("http://localhost:3000/getAllData")
-      .then((response) => {
-        //console.log(response.data);
-        this.setState({
-          allData: response.data,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    axios
-      .get("http://localhost:3000/getFilteredData")
-      .then((response) => {
-        //console.log(response.data);
-        this.setState({
-          filteredData: response.data,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    //this.handleData();
-  };
-
-  //Overwrites card-data if filter-data is present.
-  handleData = (e) => {
-    if (this.state.filteredData.length === 0) {
-      const allDataArray = [...data1]; //[...this.state.allData]
-      this.state.cardData.push(allDataArray);
-    } else {
-      const filteredArray = [...this.state.filteredData];
-      this.state.cardData.push(filteredArray);
-    }
-  };
   render() {
     return (
       <div>
-        <div className="form-wrapper">
-          <Router>
-            <div className="filter-container">
-              <Filters />
-            </div>
-            <div className="card-container">
-              <Router>
-                <Route
-                  path="/list"
-                  exact
-                  render={(props) => (
-                    <Card
-                      {...props}
-                      data={this.state.cardData}
-                      dataHandler={this.handleData}
-                    />
-                  )}
-                />
-                <Route path="/list/:id" component={CardDetails} />
-              </Router>
-            </div>
-          </Router>
-        </div>
+        {this.state.isLoading && (
+          <i className="fa fa-spinner fa-spin">Please wait...</i>
+        )}
+        {!this.state.isLoading && (
+          <div className="form-wrapper">
+            <Router>
+              <div className="filter-container">
+                <Filters />
+              </div>
+              <div className="card-container">
+                <Router>
+                  <Route
+                    path="/list"
+                    exact
+                    render={(props) => (
+                      <Card
+                        {...props}
+                        data={this.state.cardData[0]}
+                        //dataHandler={this.handleData}
+                      />
+                    )}
+                  />
+                  <Route path="/list/:id" component={CardDetails} />
+                </Router>
+              </div>
+            </Router>
+          </div>
+        )}
       </div>
     );
   }

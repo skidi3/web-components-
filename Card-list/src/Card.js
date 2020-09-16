@@ -6,7 +6,16 @@ import Tabs from "./Tabs";
 //Some dummy data
 
 class Card extends React.Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cardDetails: this.props.data,
+    };
+    console.log("props:", this.props.data);
+    console.log("state:", this.state.cardDetails[0]);
+    this.setCard();
+  }
+  setCard = () => {
     var el = document.querySelectorAll(".tabs");
     var instance = M.Tabs.init(el, {});
     document.addEventListener("DOMContentLoaded", function () {
@@ -15,14 +24,13 @@ class Card extends React.Component {
         toolbarEnabled: true,
       });
     });
-  }
+  };
 
   render() {
     return (
-      <div class="main" onLoad={(this.props.dataHandler, this.props.data)}>
-        {console.log(this.props.data[0])}
+      <div class="main">
         <div class="show-on-small hide-on-med-and-up">
-          {this.props.data[0].map(
+          {this.state.cardDetails[0].map(
             ({ title, price, image, rating, reviews }) => (
               <div class="wrapper">
                 <div class="row">
@@ -69,10 +77,10 @@ class Card extends React.Component {
           )}
         </div>
         <div class="hide-on-small-only">
-          {this.props.data[0].map(
+          {this.state.cardDetails[0].map(
             ({
               id,
-              title,
+              companyName,
               address,
               price,
               newprice,
@@ -99,7 +107,7 @@ class Card extends React.Component {
                       <div class="card-content">
                         <div class="card-left">
                           <div class="card-title">
-                            <h5 class="align-left">{title}</h5>
+                            <h5 class="align-left">{companyName}</h5>
                           </div>
                           <div class="card-address">
                             <p class="align-left truncate">{address}</p>
