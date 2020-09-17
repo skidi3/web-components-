@@ -101,16 +101,15 @@ class Filters extends React.Component {
       amenities: this.state.amenities,
     };
     console.log(filterData);
-    axios
-      .post(`http://localhost:3000/api/sendFilterData`, filterData)
-      .then((res) => {
-        console.log(res.data);
-      });
+    axios.post(`http://localhost:8089/api/list`, filterData).then((res) => {
+      console.log(res.data);
+    });
   };
 
   render() {
     return (
       <div>
+        {console.log("filter data:", this.state)}
         <div class="filter-wrapper">
           <p>
             <b>BY CATEGORY</b>

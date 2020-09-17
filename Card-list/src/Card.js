@@ -10,13 +10,10 @@ class Card extends React.Component {
     super(props);
     this.state = {
       cardDetails: this.props.data,
+      index: 1,
     };
     console.log("props:", this.props);
-    console.log(
-      "state:",
-      this.state.cardDetails[0][0],
-      this.state.cardDetails[0][0].address
-    );
+
     this.setCard();
   }
   setCard = () => {
@@ -29,7 +26,6 @@ class Card extends React.Component {
       });
     });
   };
-
   render() {
     return (
       <div class="main">
@@ -83,6 +79,7 @@ class Card extends React.Component {
         <div class="hide-on-small-only">
           {this.state.cardDetails[0].map(
             ({
+              index,
               id,
               companyName,
               property,
@@ -99,10 +96,11 @@ class Card extends React.Component {
                 <div class="col s12 m6">
                   <div class="card horizontal small">
                     <div class="card-image">
-                      <img
-                        // src={`data:image/jpeg;base64,${this.state.cardDetails[0][0].address.property.propertyImage.propertyImage.propertyImageOne}`}
-                        src={image}
-                      />
+                      {
+                        <img
+                          src={`data:image/jpeg;base64,${property.propertyImage.propertyImageOne}`}
+                        />
+                      }
                       <div class="pos-heart-favorite">
                         <div class="heart-favorite">
                           <i class="heart-favorite-icon"></i>
@@ -115,10 +113,12 @@ class Card extends React.Component {
                       <div class="card-content">
                         <div class="card-left">
                           <div class="card-title">
-                            <h5 class="align-left">{companyName}</h5>
+                            <h5 class="align-left">{property.companyName}</h5>
                           </div>
                           <div class="card-address">
-                            <p class="align-left truncate">{address}</p>
+                            <p class="align-left truncate">
+                              {property.propertyAddress.address}
+                            </p>
                           </div>
                           <br />
                           <div class="review-component valign-wrapper">
@@ -138,7 +138,9 @@ class Card extends React.Component {
                           <div class="card-price">
                             <div class="style-1">
                               <del>
-                                <span class="align-right amount">{price}</span>
+                                <span class="align-right amount">
+                                  {property.propertyDescription.price}
+                                </span>
                               </del>
                               <ins>
                                 <span class="align-right amount">
@@ -174,7 +176,9 @@ class Card extends React.Component {
                             {/*<a href={`/list/${id}`} class="btn-txt">
                               Details
                             </a>*/}
-                            <Link to={`/list/${id}`}>
+                            <Link
+                              to={`/list/${this.state.cardDetails[0][0].property.companyId}`}
+                            >
                               <p>Details</p>
                             </Link>
                           </button>

@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import M from "materialize-css";
 
-import image1 from "./assets/images/image1.jpg";
-import image2 from "./assets/images/image2.jpg";
-import image3 from "./assets/images/image3.jpg";
-import image4 from "./assets/images/image4.jpg";
-
 export default class ListingDetail extends Component {
   state = {
     carddetails: [],
@@ -40,7 +35,7 @@ export default class ListingDetail extends Component {
     const { carddetails } = this.state;
     return (
       <div className="listcontainer">
-        {console.log(this.props)} 
+        {console.log(this.props)}
         {console.log(carddetails)}
         <div id="topsection" className="pgdetail-header">
           <div className="section1">
