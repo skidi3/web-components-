@@ -3,37 +3,16 @@ import "materialize-css/dist/css/materialize.min.css";
 import M from "materialize-css";
 
 class FilterByOccupancy extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      occupancy: [],
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
   componentDidMount() {
     document.addEventListener("DOMContentLoaded", function () {
       var elems = document.querySelectorAll(".datepicker");
       var instances = M.Datepicker.init(elems, {});
     });
   }
-  handleChange = (event) => {
-    let selected = [];
-    const occupancyInput = document.querySelectorAll(".by-occupancy--filter");
-    for (let i = 0; i < occupancyInput.length; i++) {
-      if (occupancyInput[i].checked) {
-        selected.push(occupancyInput[i].value);
-      }
-    }
 
-    this.setState({
-      occupancy: selected,
-    });
-  };
   render() {
     return (
       <div>
-        {console.log(this.state)}
         <div class="input-field col s12">
           <form action="#">
             <p>
@@ -42,7 +21,7 @@ class FilterByOccupancy extends React.Component {
                   type="checkbox"
                   class="filled-in by-occupancy--filter"
                   value="Single"
-                  onChange={this.handleChange}
+                  onChange={this.props.occupancyHandler}
                 />
                 <span>Single</span>
               </label>
@@ -53,7 +32,7 @@ class FilterByOccupancy extends React.Component {
                   type="checkbox"
                   class="filled-in by-occupancy--filter"
                   value="Double"
-                  onChange={this.handleChange}
+                  onChange={this.props.occupancyHandler}
                 />
                 <span>Double</span>
               </label>
@@ -64,7 +43,7 @@ class FilterByOccupancy extends React.Component {
                   type="checkbox"
                   class="filled-in by-occupancy--filter"
                   value="Triple"
-                  onChange={this.handleChange}
+                  onChange={this.props.occupancyHandler}
                 />
                 <span>Triple</span>
               </label>
@@ -75,7 +54,7 @@ class FilterByOccupancy extends React.Component {
                   type="checkbox"
                   class="filled-in  by-occupancy--filter"
                   value="Quadruple"
-                  onChange={this.handleChange}
+                  onChange={this.props.occupancyHandler}
                 />
                 <span>Quadruple</span>
               </label>
