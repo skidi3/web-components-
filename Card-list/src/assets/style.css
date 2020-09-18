@@ -376,7 +376,7 @@ image {
   background-color: white;
   width: 400px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 .filter-wrapper {
   width: 350px;
@@ -756,6 +756,7 @@ h6 {
 #map h6 {
   font-size: 13px;
 }
+
 .amenties-list {
   width: calc(100% - 400px);
   height: 70%;

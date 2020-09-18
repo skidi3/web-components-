@@ -1,164 +1,320 @@
 import React from "react";
 import $ from "jquery";
-import axios from "axios";
-import FilterByRating from "./FilterByRating";
-import FilterByCategory from "./FilterByCategory";
-import FilterByPrice from "./FilterByPrice";
-import FilterByGender from "./FilterByGender";
-import FilterByAmenities from "./FilterByAmenities";
-import FilterByOccupancy from "./FilterByOccupancy";
+import M from "materialize-css";
+import "materialize-css/dist/css/materialize.min.css";
+import "materialize-css/dist/js/materialize.min.js";
+import noUiSlider from "nouislider";
+import "nouislider/distribute/nouislider.css";
+import * as wNumb from "wnumb";
+// import axios from "axios";
+// import FilterByRating from "./FilterByRating";
+// import FilterByCategory from "./FilterByCategory";
+// import FilterByPrice from "./FilterByPrice";
+// import FilterByGender from "./FilterByGender";
+// import FilterByAmenities from "./FilterByAmenities";
+// import FilterByOccupancy from "./FilterByOccupancy";
 
 import "nouislider/distribute/nouislider.css";
 
 class Filters extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      category: [],
-      gender: "",
-      min: "",
-      max: "",
-      rating: "",
-      occupancy: [],
-      amenities: [],
-    };
-    this.handleCategory = this.handleCategory.bind(this);
-    this.handleCategory = this.handleCategory.bind(this);
-    this.getCurrMaxData = this.getCurrMaxData.bind(this);
-    this.getCurrMinData = this.getCurrMinData.bind(this);
-    this.handleRating = this.handleRating.bind(this);
-    this.handleOccupancy = this.handleOccupancy.bind(this);
-    this.handleAmentiesChange = this.handleAmentiesChange.bind(this);
+  componentDidMount() {
+    document.addEventListener("DOMContentLoaded", function () {
+      var elems = document.querySelectorAll("select");
+      var instances = M.FormSelect.init(elems, {});
+    });
+    var slider = document.getElementById("slider");
+    noUiSlider.create(slider, {
+      start: [1001, 9999],
+      connect: true,
+      tooltips: true,
+      step: 1,
+      range: {
+        min: 1000,
+        max: 10000,
+      },
+      format: wNumb({
+        decimals: 0,
+      }),
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+      var elems = document.querySelectorAll(".datepicker");
+      var instances = M.Datepicker.init(elems, {});
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+      var elems = document.querySelectorAll("select");
+      var instances = M.FormSelect.init(elems, {});
+    });
   }
-
-  handleCategory = (event) => {
-    let selected = [];
-    const categoryInput = document.querySelectorAll(".by-category--filter");
-
-    for (let i = 0; i < categoryInput.length; i++) {
-      if (categoryInput[i].checked) {
-        selected.push(categoryInput[i].value);
-      }
-    }
-
-    this.setState({
-      category: selected,
-    });
-  };
-
-  handleGender = (e) => {
-    this.setState({ gender: e.target.value });
-  };
-
-  handleRating = (e) => {
-    this.setState({ rating: e.target.value });
-  };
-
-  getCurrMaxData = () => {
-    var currMaxPos = $(".noUi-handle-upper .noUi-tooltip").html();
-    //console.log(currMaxPos);
-    this.setState({ max: currMaxPos });
-  };
-
-  getCurrMinData = () => {
-    var currMinPos = $(".noUi-handle-lower .noUi-tooltip").html();
-    //console.log(currMinPos);
-    this.setState({ min: currMinPos });
-    this.getCurrMaxData();
-  };
-
-  handleOccupancy = (event) => {
-    let selected = [];
-    const occupancyInput = document.querySelectorAll(".by-occupancy--filter");
-    for (let i = 0; i < occupancyInput.length; i++) {
-      if (occupancyInput[i].checked) {
-        selected.push(occupancyInput[i].value);
-      }
-    }
-
-    this.setState({
-      occupancy: selected,
-    });
-  };
-
-  handleAmentiesChange = (event) => {
-    var select = document.getElementById("amenities");
-    var selected = [...select.selectedOptions].map((option) => option.value);
-
-    this.setState({
-      amenities: selected,
-    });
-  };
-
-  submitFilterData = (e) => {
-    e.preventDefault();
-    var filterData = {
-      category: this.state.category,
-      gender: this.state.gender,
-      price: [this.state.min, this.state.max],
-      rating: this.state.rating,
-      occupancy: this.state.occupancy,
-      amenities: this.state.amenities,
-    };
-    console.log(filterData);
-    axios.post(`http://localhost:8089/api/list`, filterData).then((res) => {
-      console.log(res.data);
-    });
-  };
-
   render() {
     return (
-      <div>
-        {console.log("filter data:", this.state)}
+      <form onSubmit={this.props.submitFilterData}>
         <div class="filter-wrapper">
           <p>
             <b>BY CATEGORY</b>
           </p>
 
-          <FilterByCategory categoryHandler={this.handleCategory} />
+          <div class="input-field col s12">
+            <form action="#">
+              <p>
+                <label>
+                  <input
+                    type="checkbox"
+                    class="filled-in by-category--filter "
+                    name="PG"
+                    value="PG"
+                    onChange={this.props.categoryHandler}
+                  />
+                  <span>PG</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input
+                    type="checkbox"
+                    class="filled-in by-category--filter"
+                    name="Hostel"
+                    value="Hostel"
+                    onChange={this.props.categoryHandler}
+                  />
+                  <span>Hostel</span>
+                </label>
+              </p>
+            </form>
+          </div>
           <br />
 
           <p>
             <b>BY GENDER</b>
           </p>
-          <FilterByGender genderHandler={this.handleGender} />
+          <div class="input-field col s12">
+            <form action="#">
+              <p>
+                <label>
+                  <input
+                    type="radio"
+                    class="with-gap"
+                    value="boys"
+                    name="by-gender"
+                    onChange={this.props.genderHandler}
+                  />
+                  <span>Boys only</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input
+                    type="radio"
+                    class="with-gap"
+                    value="girls"
+                    name="by-gender"
+                    onChange={this.props.genderHandler}
+                  />
+                  <span>Girls only</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input
+                    type="radio"
+                    class="with-gap"
+                    value="unisex"
+                    name="by-gender"
+                    onChange={this.props.genderHandler}
+                  />
+                  <span>Unisex</span>
+                </label>
+              </p>
+            </form>
+          </div>
           <br />
 
           <p>
             <b>BY PRICE</b>
           </p>
-          <FilterByPrice priceHandler={this.getCurrMinData} />
+          <div class="price-filter-wrapper" onClick={this.props.priceHandler}>
+            <br />
+            <div class="input-field col s12 by-price ">
+              <div id="slider"></div>
+            </div>
+          </div>
           <br />
 
           <p>
             <b>BY STARS</b>
           </p>
-          <FilterByRating ratingHandler={this.handleRating} />
+          <div class="input-field col s12">
+            <form action="#">
+              <p>
+                <label>
+                  <input
+                    name="rating"
+                    type="radio"
+                    class="with-gap"
+                    value="5"
+                    onChange={this.props.ratingHandler}
+                  />
+                  <span>5 star and above</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input
+                    name="rating"
+                    type="radio"
+                    class="with-gap"
+                    value="4"
+                    onChange={this.props.ratingHandler}
+                  />
+                  <span>4 star and above</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input
+                    name="rating"
+                    type="radio"
+                    class="with-gap"
+                    value="3"
+                    onChange={this.props.ratingHandler}
+                  />
+                  <span>3 star and above</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input
+                    name="rating"
+                    type="radio"
+                    class="with-gap"
+                    value="2"
+                    onChange={this.props.ratingHandler}
+                  />
+                  <span>2 star and above</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input
+                    name="rating"
+                    type="radio"
+                    class="with-gap"
+                    value="1"
+                    onChange={this.props.ratingHandler}
+                  />
+                  <span>1 star and above</span>
+                </label>
+              </p>
+            </form>
+          </div>
           <br />
 
           <p>
             <b>BY OCCUPANCY</b>
           </p>
-          <FilterByOccupancy occupancyHandler={this.handleOccupancy} />
+          <div class="input-field col s12">
+            <form action="#">
+              <p>
+                <label>
+                  <input
+                    type="checkbox"
+                    class="filled-in by-occupancy--filter"
+                    value="Single"
+                    onChange={this.props.occupancyHandler}
+                  />
+                  <span>Single</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input
+                    type="checkbox"
+                    class="filled-in by-occupancy--filter"
+                    value="Double"
+                    onChange={this.props.occupancyHandler}
+                  />
+                  <span>Double</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input
+                    type="checkbox"
+                    class="filled-in by-occupancy--filter"
+                    value="Triple"
+                    onChange={this.props.occupancyHandler}
+                  />
+                  <span>Triple</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input
+                    type="checkbox"
+                    class="filled-in  by-occupancy--filter"
+                    value="Quadruple"
+                    onChange={this.props.occupancyHandler}
+                  />
+                  <span>Quadruple</span>
+                </label>
+              </p>
+            </form>
+          </div>
           <br />
 
           <p>
             <b>BY AMENETIES</b>
           </p>
-          <FilterByAmenities amenitiesHandler={this.handleAmentiesChange} />
+          <div class="input-field col s12">
+            <select
+              id="amenities"
+              multiple
+              onChange={this.props.amenitiesHandler}
+            >
+              <option name="ac" value="ac">
+                AC
+              </option>
+              <option name="washingmachine" value="washingmachine">
+                Washing Machine
+              </option>
+              <option name="kitchen" value="kitchen">
+                Kitchen
+              </option>
+              <option name="fridge" value="fridge">
+                Fridge
+              </option>
+              <option name="wifi" value="wifi">
+                WiFi
+              </option>
+              <option name="furniture" value="furniture">
+                Furniture
+              </option>
+              <option name="laundry" value="laundry">
+                Laundry
+              </option>
+              <option name="cctv" value="cctv">
+                CCTV
+              </option>
+              <option name="cab" value="cab">
+                Cabs
+              </option>
+              <option name="store" value="store">
+                Store
+              </option>
+            </select>
+          </div>
         </div>
         <div class="filter-button">
           <button
             class="filter-button-submit btn waves-effect waves-light"
             type="submit"
             name="action"
-            onClick={this.submitFilterData}
+            //onClick={this.props.submitFilterData}
           >
             Submit
             <i class="material-icons right">send</i>
           </button>
         </div>
-      </div>
+      </form>
     );
   }
 }

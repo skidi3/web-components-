@@ -10,58 +10,10 @@ class FilterByGender extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
   }}*/
-  componentDidMount() {
-    document.addEventListener("DOMContentLoaded", function () {
-      var elems = document.querySelectorAll("select");
-      var instances = M.FormSelect.init(elems, {});
-    });
-  }
+  componentDidMount() {}
 
   render() {
-    return (
-      <div>
-        <div class="input-field col s12">
-          <form action="#">
-            <p>
-              <label>
-                <input
-                  type="radio"
-                  class="with-gap"
-                  value="boys"
-                  name="by-gender"
-                  onChange={this.props.genderHandler}
-                />
-                <span>Boys only</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input
-                  type="radio"
-                  class="with-gap"
-                  value="girls"
-                  name="by-gender"
-                  onChange={this.props.genderHandler}
-                />
-                <span>Girls only</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input
-                  type="radio"
-                  class="with-gap"
-                  value="unisex"
-                  name="by-gender"
-                  onChange={this.props.genderHandler}
-                />
-                <span>Unisex</span>
-              </label>
-            </p>
-          </form>
-        </div>
-      </div>
-    );
+    return <div></div>;
   }
 }
 
