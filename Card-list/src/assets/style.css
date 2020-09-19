@@ -78,7 +78,9 @@ image {
 .card-bottom {
   height: 100px;
 }
-
+.card-price-sm {
+  margin-top: -17px;
+}
 .review-component {
   display: flex;
   flex-direction: row;
@@ -257,24 +259,77 @@ image {
 /*
  CSS for the main interaction
 */
-.tabset > input[type="radio"] {
+.tabset-sm > input[type="radio"] {
   position: absolute;
   left: -200vw;
 }
 
-.tabset .tab-panel {
+.tabset-sm .tab-panel-sm {
   display: none;
 }
 
-.tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
-.tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
-.tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
-.tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
-.tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
-.tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
+.tabset-sm
+  > input:first-child:checked
+  ~ .tab-panels-sm
+  > .tab-panel-sm:first-child,
+.tabset-sm
+  > input:nth-child(3):checked
+  ~ .tab-panels-sm
+  > .tab-panel-sm:nth-child(2),
+.tabset-sm
+  > input:nth-child(5):checked
+  ~ .tab-panels-sm
+  > .tab-panel-sm:nth-child(3),
+.tabset-sm
+  > input:nth-child(7):checked
+  ~ .tab-panels-sm
+  > .tab-panel-sm:nth-child(4),
+.tabset-sm
+  > input:nth-child(9):checked
+  ~ .tab-panels-sm
+  > .tab-panel-sm:nth-child(5),
+.tabset-sm
+  > input:nth-child(11):checked
+  ~ .tab-panels-sm
+  > .tab-panel-sm:nth-child(6) {
   display: block;
 }
 
+.tabset-lg > input[type="radio"] {
+  position: absolute;
+  left: -200vw;
+}
+
+.tabset-lg .tab-panel-lg {
+  display: none;
+}
+
+.tabset-lg
+  > input:first-child:checked
+  ~ .tab-panels-lg
+  > .tab-panel-lg:first-child,
+.tabset-lg
+  > input:nth-child(3):checked
+  ~ .tab-panels-lg
+  > .tab-panel-lg:nth-child(2),
+.tabset-lg
+  > input:nth-child(5):checked
+  ~ .tab-panels-lg
+  > .tab-panel-lg:nth-child(3),
+.tabset-lg
+  > input:nth-child(7):checked
+  ~ .tab-panels-lg
+  > .tab-panel-lg:nth-child(4),
+.tabset-lg
+  > input:nth-child(9):checked
+  ~ .tab-panels-lg
+  > .tab-panel-lg:nth-child(5),
+.tabset-lg
+  > input:nth-child(11):checked
+  ~ .tab-panels-lg
+  > .tab-panel-lg:nth-child(6) {
+  display: block;
+}
 /*
 
 /*
@@ -288,7 +343,9 @@ image {
   border-radius: 5%;
   box-shadow: #20201c;
 }
-.tabset > label {
+
+.tabset-lg > label,
+.tabset-sm > label {
   position: relative;
   display: inline-block;
   padding: 5px 5px;
@@ -298,7 +355,8 @@ image {
   color: #20201c;
 }
 
-.tab-panel {
+.tab-panel-lg,
+.tab-panel-sm {
   padding: 0px 10px;
 }
 
@@ -380,6 +438,7 @@ image {
 }
 .filter-wrapper {
   width: 350px;
+  margin: 0% 10%;
   height: 1150px;
 }
 .by-ratings,
@@ -795,4 +854,18 @@ h6 {
 
 .nearby-item {
   color: blueviolet;
+}
+.gender-icons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 14px;
+}
+
+@media only screen and (max-width: 600px) {
+  .card-stacked .card-content .col {
+    margin-left: -10px;
+  }
+  .tabset-sm {
+    margin-left: -8px;
+  }
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import $ from "jquery";
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 import "materialize-css/dist/js/materialize.min.js";

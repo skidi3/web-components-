@@ -95,7 +95,7 @@ class App extends React.Component {
     axios.post(`http://localhost:8008/api/list`, filterData).then((res) => {
       const newState = [];
       newState.push(res.data);
-      console.log("posted!", newState);
+      console.log("posted!", newState, res);
       this.setState({ filteredData: newState, cardData: newState });
     });
     // setTimeout(() => {
@@ -162,7 +162,7 @@ class App extends React.Component {
   };
 
   render() {
-    console.log("datanew:", this.state.cardData);
+    console.log("App js State:", this.state);
 
     return (
       <div>
